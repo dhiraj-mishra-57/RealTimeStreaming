@@ -1,5 +1,7 @@
 import os
 import psycopg2
+import pycountry
+import random
 from faker import Faker
 from datetime import datetime
 from psycopg2.extras import execute_values
@@ -8,6 +10,19 @@ from psycopg2.extras import execute_values
 class FakeDataGenerator:
     def __init__(self):
         self.faker = Faker()
+
+    @staticmethod
+    def get_state_for_country(country_code):
+        try:
+            country = pycountry.countries.get(alpha_2=country_code)
+            subdivisions = list(pycountry.subdivisions.get(country_code=country.alpha_2))
+
+            if subdivisions:
+                return random.choice(subdivisions).name
+            else:
+                return None
+        except AttributeError:
+            return None
 
     def generate_data(self, num_records):
         data = []
@@ -21,8 +36,8 @@ class FakeDataGenerator:
             account_number = self.faker.uuid4()
             card_number = self.faker.credit_card_number()
             account_type = self.faker.random_element(["Savings", "Current", "Salary"])
-            state = self.faker.state()
-            country = 'USA'
+            country = 'US'
+            state = self.get_state_for_country(country)
             created_at = datetime.now()
             updated_at = datetime.now()
 
