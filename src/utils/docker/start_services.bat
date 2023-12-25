@@ -10,7 +10,7 @@ docker run -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 -v postgres_dat
 
 
 REM Wait for a moment for PostgreSQL to start
-timeout /t 5 /nobreak >nul
+timeout /t 5 /nobreak
 
 REM Start Spark container
 echo Starting Spark container...

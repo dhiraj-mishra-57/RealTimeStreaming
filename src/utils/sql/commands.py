@@ -16,7 +16,6 @@ query =  '''
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
-        
         create database SparkStreaming;
         '''
 

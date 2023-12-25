@@ -24,9 +24,9 @@ class FakeDataGenerator:
         except AttributeError:
             return None
 
-    def generate_data(self, num_records):
+    def generate_data(self, records):
         data = []
-        for _ in range(num_records):
+        for _ in range(records):
             customer_first_name = self.faker.first_name()
             customer_last_name = self.faker.last_name()
             date_of_birth = self.faker.date_of_birth(minimum_age=18, maximum_age=65)
