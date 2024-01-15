@@ -48,6 +48,7 @@ class FakeDataGenerator:
 
         return data
 
+
 class LoadDataPostgres:
 
     def __init__(self, db_params):
@@ -70,17 +71,17 @@ class LoadDataPostgres:
 
 if __name__ == '__main__':
     db_params = {
-        'dbname': os.environ.get('DB_NAME'),
-        'user': os.environ.get('DB_USER'),
-        'password': os.environ.get('DB_PASSWORD'),
-        'host': os.environ.get('DB_HOST'),
-        'port': os.environ.get('DB_PORT')
+        'dbname': 'postgres',
+        'user': 'postgres',
+        'password': 'mysecretpassword',
+        'host': 'localhost',
+        'port': 5432
     }
 
     data_generator = FakeDataGenerator()
 
     # Specify the number of records you want to generate
-    num_records = 10
+    num_records = 1
 
     # Call the generate_data method to generate fake data
     faker_data = data_generator.generate_data(num_records)
@@ -88,4 +89,3 @@ if __name__ == '__main__':
     # load data into postgres
     db_class = LoadDataPostgres(db_params)
     db_class.load_dataset(faker_data)
-
