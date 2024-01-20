@@ -12,4 +12,13 @@ properties = {
                 "dbtable": "customer"
                 }
 
-df = spark.read.format("jdbc").options(**properties).load()
+# df = spark.read.format("jdbc").options(**properties).load()
+
+# df = spark.readStream.format("socket").option("host","localhost").\
+#     option("port",5432).\
+#     option("table","customer").\
+#     option("user","postgres").option("password","mysecretpassword").load().awaitTermination()
+
+# df = spark.readStream.format("socket").options(**properties).load()
+# print(df.isStreaming())
+print(df.printSchema())
